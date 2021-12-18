@@ -2,6 +2,19 @@
 
 A Re-implementation of Tiny BrowserEngine by Rust.
 
+# Todo List 
+
+- [x] DOM Data Structure
+- [ ] HTML Parser
+
+
+# Note 
+
+1. Only the following syntax of HTML is supported:
+
+- Balanced tags: ```<p>...</p>```
+- Attributes with quoted values: ```id="main"```
+- Text nodes: ```<em>world</em>```
 
 # Reference
 
