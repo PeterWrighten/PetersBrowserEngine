@@ -2,6 +2,13 @@
 
 A Re-implementation of Tiny BrowserEngine by Rust.
 
+# Prerequisites
+
+As for me, I consider this project is a great case to combine acknowledgements of CS144 & CS143, which courses involved Computer Networking and Compiler.
+
+Moreover, It is also crucial to acknowledge Java Script or other frontend technologies.
+
+
 # Todo List 
 
 - [x] DOM Data Structure
