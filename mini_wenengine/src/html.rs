@@ -70,8 +70,17 @@ impl Parser {
         assert!(self.consume_char() == '>');
 
         //Contents.
+        let children = self.parse_nodes();
 
-        
+        //Closing tag.
+        assert!(self.consume_char() == '<');
+        assert!(self.consume_char() == '/');
+        assert!(self.parse_tag_name() == tag_name);
+        assert!(self.consume_char() == '>');
+
+        return dom::elem(tag_name, attrs, children);
+
+
     }
 
 }
