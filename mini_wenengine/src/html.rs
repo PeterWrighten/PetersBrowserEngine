@@ -3,6 +3,18 @@ use dom;
 
 use std::collections::HashMap;
 
+//Parse an HTML document and return the root element.
+pub fn parse(source: String) -> dom::Node {
+    let mut nodes = Parser {pos: 0, input: source }.parse_nodes();
+
+    //If the document contains a root element, just return it. Otherwise, create one.
+    if nodes.len() == 1 {
+        nodes.swap_remove(0)
+    } else {
+        dom::elem("html".to_string(), HashMap::new(), nodes)
+    }
+}
+
 struct Parser {
     pos: usize,
     input: String,
@@ -79,8 +91,47 @@ impl Parser {
         assert!(self.consume_char() == '>');
 
         return dom::elem(tag_name, attrs, children);
+    }
 
+    fn parse_attr(&mut self) -> (String, String) {
+        let name = self.parse_tag_name();
+        assert!(self.consume_char() == '=');
+        let value = self.parse_attr_value();
+        return (name, value);
+    }
 
+    fn parse_attr_value(&mut self) -> String {
+        let open_quote = self.consume_char();
+        assert!(open_quote == '"' || open_quote == '\'');
+        let value = self.consume_while(|c| c != open_quote);
+        assert!(self.consume_char() == open_quote);
+        return value;
+    }
+
+    fn parse_attributes(&mut self) -> som::AttrMap {
+        let mut attributes = HashMap::new();
+        loop {
+            self.consume_whitespace();
+            if self.next_char() == '>' {
+                break;
+            }
+            let (name, value) = self.parse_attr();
+            attributes.insert(name, value);
+        }
+        return attributes;
+    }
+
+    //Parse a sequence of sibling nodes
+    fn parse_nodes(&mut self) -> Vec<dom::Node> {
+        let mut nodes = Vec::new();
+        loop {
+            self.consume_whitespace();
+            if self.eof() || self.starts_with("</") {
+                break;
+            }
+            nodes.push(self.parse_node());
+        }
+        return nodes;
     }
 
 }

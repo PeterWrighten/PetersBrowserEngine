@@ -3,17 +3,17 @@ use std::collections::{HashMap, HashSet};
 
 //data structure
 
-struct Node {
+pub struct Node {
     children: Vec<Node>,
     node_type: NodeType,
 }
 
-enum NodeType {
+pub enum NodeType {
     Text(String),
     Element(ElementData),
 }
 
-struct ElementData {
+pub struct ElementData {
     tag_name: String,
     attributes: AttrMap,
 }
@@ -23,11 +23,11 @@ type AttrMap = HashMap<String, String>;
 
 //constructor
 
-fn text(data: String) -> Node {
+pub fn text(data: String) -> Node {
     Node { children: Vec::new(), node_type: NodeType::Text(data) }
 }
 
-fn elem(name: String, attrs: AttrMap, children: Vec<Node>) -> Node {
+pub fn elem(name: String, attrs: AttrMap, children: Vec<Node>) -> Node {
     Node {
         children: children,
         node_type: NodeType::Element(

@@ -12,7 +12,8 @@ Moreover, It is also crucial to acknowledge Java Script or other frontend techno
 # Todo List 
 
 - [x] DOM Data Structure
-- [ ] HTML Parser
+- [x] HTML Parser
+- [ ] CSS Parser
 
 
 # Note 
