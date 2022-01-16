@@ -3,11 +3,11 @@ use dom;
 
 use std::collections::HashMap;
 
-//Parse an HTML document and return the root element.
+/// Parse an HTML document and return the root element.
 pub fn parse(source: String) -> dom::Node {
     let mut nodes = Parser {pos: 0, input: source }.parse_nodes();
 
-    //If the document contains a root element, just return it. Otherwise, create one.
+    /// If the document contains a root element, just return it. Otherwise, create one.
     if nodes.len() == 1 {
         nodes.swap_remove(0)
     } else {
@@ -21,7 +21,7 @@ struct Parser {
 }
 
 impl Parser {
-    //Read the current character without consuming it.
+    /// Read the current character without consuming it.
     fn next_char(&self) -> char {
         self.input[self.pos..].chars().next().unwrap()
     }

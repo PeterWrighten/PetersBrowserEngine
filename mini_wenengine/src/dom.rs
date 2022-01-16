@@ -1,7 +1,7 @@
 
 use std::collections::{HashMap, HashSet};
 
-//data structure
+/// data structure: DOM
 
 pub struct Node {
     children: Vec<Node>,
@@ -21,7 +21,7 @@ pub struct ElementData {
 type AttrMap = HashMap<String, String>;
 
 
-//constructor
+/// constructor
 
 pub fn text(data: String) -> Node {
     Node { children: Vec::new(), node_type: NodeType::Text(data) }

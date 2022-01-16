@@ -42,7 +42,9 @@ pub struct Color {
     pub a: u8,
 }
 
-impl Copy for Color {}
+impl Copy for Color {
+    
+}
 
 pub type Specificity = (usize, usize, usize);
 
